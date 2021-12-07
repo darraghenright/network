@@ -1,0 +1,27 @@
+version: '3.8'
+
+# Define a network called `network`. The full network name 
+# will be concatenated from the `COMPOSER_PROJECT_NAME` and
+# the network name; i.e: `api_network`. This can then be 
+# referenced locally with its local name `network` and in 
+# other Docker Compose stacks that are configured to use the
+# same network, with it's fully qualified name `api_network`.
+#
+# See `service/docker-compose.yaml` for more details.
+
+networks:
+  network:
+    driver: bridge
+
+services:
+  api:
+    build: .
+    container_name: api
+    environment:
+      - FLASK_ENV=development
+    networks:
+      # The network to be used must be explicitly defined,
+      # using the local network name `network` defined above.
+      - network
+    ports:
+      - 5000:5000

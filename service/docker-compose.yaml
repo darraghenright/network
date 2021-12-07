@@ -1,0 +1,24 @@
+version: '3.8'
+
+# Define a network which in this case is a reference
+# to an external network. The fully qualified name
+# must be used here. In our case this is `api_network`.
+# Note that this external network should already exist
+# and it will not be created here.
+#
+# See `api/docker-compose.yaml` for more details.
+
+networks:
+  api_network:
+    external: true
+
+services:
+  service:
+    build: .
+    container_name: service
+    environment:
+      - FLASK_ENV=development
+    networks:
+      # Attach to the externally defined network, 
+      # using the fully qualified network name.
+      - api_network

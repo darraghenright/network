@@ -10,8 +10,9 @@ version: '3.8'
 # See `service/docker-compose.yaml` for more details.
 
 networks:
-  network:
+  api_network:
     driver: bridge
+    name: api_network
 
 services:
   api:
@@ -22,6 +23,6 @@ services:
     networks:
       # The network to be used must be explicitly defined,
       # using the local network name `network` defined above.
-      - network
+      - api_network
     ports:
       - 5000:5000

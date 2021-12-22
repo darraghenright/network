@@ -6,8 +6,8 @@ help:
 	@echo "Welcome! use \`make up\` and \`make down\` to start and stop the projects."
 
 up:
-	docker compose -f ./api/docker-compose.yaml up --build -d
-	docker compose -f ./service/docker-compose.yaml up --build -d
+	docker compose -f ./api/docker-compose.yaml up -d
+	docker compose -f ./service/docker-compose.yaml up -d
 	@echo "Visit http://localhost:5000/"
 
 down:
